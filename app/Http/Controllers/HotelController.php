@@ -1,5 +1,5 @@
 <?php
-gg
+
 namespace App\Http\Controllers;
 
 use App\Models\Hotel;
