@@ -49,11 +49,6 @@ class UserController extends Controller
             'username' => $request->username,
             'password' => Hash::make($request->password),
             'level' => $request->level
-        User::create([
-            'name' => $request->name,
-            'username' => $request->username,
-            'password' => Hash::make($request->password),
-            'level' => $request->level
         ]);
 
         return redirect()->back()->with('success', 'Success Add User!');
