@@ -10,20 +10,22 @@ Nama anggota :
 
 Fitur-fitur :
 1.Register 
-Untuk registrasi user baru
+Untuk registrasi user baru 
 2.Login 
 Untuk login user 
 3.Pemesanan Tiket Pesawat 
 Untuk melakukan pemesanan tiket pesawat 
 4.Pemesanan Tiket Kereta 
-Untuk melakukan pemesanan tiket kereta
-5.Update profile 
-untuk melakukan update pada profile user 
-6.History
-untuk melihat history pemesanan tiket dan informasi seputar tiket yang telah dipesan
-7.Rute Awal
-untuk menentukan rute awal keberangkatan dari suatu perjalanan
-8.Rute Akhir
-untuk menentukan rute akhir atau pemberhentian dari suatu perjalanan
-9. Waktu Berangkat
+Untuk melakukan pemesanan tiket kereta 
+5.Pemilihan tempat duduk
+Untuk memilih tempat duduk yang diinginkan
+6.Update profile 
+untuk melakukan update atau perubahan pada profile user 
+7.History 
+untuk melihat history pemesanan tiket dan informasi seputar tiket yang telah dipesan 
+8.Rute Awal 
+untuk menentukan rute awal keberangkatan dari suatu perjalanan 
+9.Rute Akhir 
+untuk menentukan rute akhir atau pemberhentian dari suatu perjalanan 
+10. Waktu Berangkat 
 untuk menentukan waktu keberangkatan
