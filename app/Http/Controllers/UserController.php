@@ -44,7 +44,11 @@ class UserController extends Controller
             'password' => 'required|string|min:8|confirmed',
             'level' => 'required'
         ]);
-
+        User::create([
+            'name' => $request->name,
+            'username' => $request->username,
+            'password' => Hash::make($request->password),
+            'level' => $request->level
         User::create([
             'name' => $request->name,
             'username' => $request->username,
