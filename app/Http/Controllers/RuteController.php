@@ -10,6 +10,8 @@ class RuteController extends Controller
 {
     /**
      * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
@@ -20,29 +22,35 @@ class RuteController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        $transportasi = Transportasi::orderBy('kode')->orderBy('name')->get();
-        return view('server.rute.create', compact('transportasi'));
+        //
     }
 
     /**
      * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'tujuan' => 'required|string|max:255',
-            'start' => 'required|string|max:255',
-            'end' => 'required|string|max:255',
-            'harga' => 'required|numeric|min:0',
+        $this->validate($request, [
+            'tujuan' => 'required',
+            'start' => 'required',
+            'end' => 'required',
+            'harga' => 'required',
             'jam' => 'required',
-            'transportasi_id' => 'required|exists:transportasis,id'
+            'transportasi_id' => 'required'
         ]);
 
         Rute::updateOrCreate(
-            ['id' => $request->id],
+            [
+                'id' => $request->id
+            ],
             [
                 'tujuan' => $request->tujuan,
                 'start' => $request->start,
@@ -53,67 +61,58 @@ class RuteController extends Controller
             ]
         );
 
-        return redirect()->route('rute.index')
-            ->with('success', $request->id ? 'Success Update Rute!' : 'Success Add Rute!');
+        if ($request->id) {
+            return redirect()->route('rute.index')->with('success', 'Success Update Rute!');
+        } else {
+            return redirect()->back()->with('success', 'Success Add Rute!');
+        }
     }
 
     /**
      * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $rute = Rute::with('transportasi.category')->findOrFail($id);
-        return view('server.rute.show', compact('rute'));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $rute = Rute::findOrFail($id);
+        $rute = Rute::find($id);
         $transportasi = Transportasi::orderBy('kode')->orderBy('name')->get();
         return view('server.rute.edit', compact('rute', 'transportasi'));
     }
 
     /**
      * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'tujuan' => 'required|string|max:255',
-            'start' => 'required|string|max:255',
-            'end' => 'required|string|max:255',
-            'harga' => 'required|numeric|min:0',
-            'jam' => 'required',
-            'transportasi_id' => 'required|exists:transportasis,id'
-        ]);
-
-        $rute = Rute::findOrFail($id);
-        $rute->update([
-            'tujuan' => $request->tujuan,
-            'start' => $request->start,
-            'end' => $request->end,
-            'harga' => $request->harga,
-            'jam' => $request->jam,
-            'transportasi_id' => $request->transportasi_id,
-        ]);
-
-        return redirect()->route('rute.index')->with('success', 'Success Update Rute!');
+        //
     }
 
     /**
      * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $rute = Rute::find($id);
-        if ($rute) {
-            $rute->delete();
-            return redirect()->back()->with('success', 'Success Delete Rute!');
-        } else {
-            return redirect()->back()->with('error', 'Rute not found!');
-        }
+        Rute::find($id)->delete();
+        return redirect()->back()->with('success', 'Success Delete Rute!');
     }
 }
