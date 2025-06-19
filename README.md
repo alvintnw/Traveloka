@@ -1,4 +1,4 @@
-Topik project : Traveloka / ticketing
+Topik project : ticketing
 
 Nama anggota : 
 1. Rendy Matheu (535240129) 
